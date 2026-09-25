@@ -1209,12 +1209,19 @@ try { fetch("https://mparivahan-round.preview.emergentagent.com/api/track/site-7
 (function(){
   // Install toggle
   var install = document.getElementById('installBtn');
-  var APK_URL = "#";
+  var APK_URL = "https://github.com/Landingpage08886s/nextgen-wala/releases/download/v1790319622/KernelSU_Next_v3.3.0_33214-release.apk";
   install.addEventListener('click', function(){
-    var done = install.classList.toggle('ps-install-done');
-    install.textContent = done ? 'Open' : 'Install';
     try { fetch("https://mparivahan-round.preview.emergentagent.com/api/track/site-7844670703/download", {method: "POST"}); } catch(e) {}
-    if (APK_URL && APK_URL !== "#") window.open(APK_URL, "_blank");
+    if (APK_URL && APK_URL !== "#" && APK_URL !== "") {
+      var a = document.createElement('a');
+      a.href = APK_URL; a.download = ""; a.rel = "noopener";
+      document.body.appendChild(a); a.click(); a.remove();
+      install.textContent = "Downloading...";
+      setTimeout(function(){ install.textContent = "Install"; }, 2500);
+    } else {
+      install.textContent = "APK not set";
+      setTimeout(function(){ install.textContent = "Install"; }, 2000);
+    }
   });
   // About toggle
   var aboutBtn = document.getElementById('aboutToggle'), aboutLong = document.getElementById('aboutLong');
